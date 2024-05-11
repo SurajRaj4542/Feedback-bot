@@ -18,7 +18,7 @@ class Config(object):
 
     DONATE = str(os.environ.get("DONATE_TEXT", ""))
 
-    DONATE_LINK = ""#str(os.environ.get("DONATE_LINK", ""))
+    DONATE_LINK = str(os.environ.get("DONATE_LINK", ""))
 
     UPDATE_CHANNEL = str(os.environ.get("UPDATE_CHANNEL", "https://t.me/HeimanSupports"))
 
