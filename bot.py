@@ -23,14 +23,12 @@ import traceback
 import logging
 from pyrogram import Client, filters
 
-
 from configs import Config as C
 
-
 # LMAO, This Is Logging 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
+# logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+# logger = logging.getLogger(__name__)
+# logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 # Import From Framework
 # from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
@@ -123,12 +121,6 @@ async def start(bot, message):
     if is_banned is True:
         await message.reply_text(f"You are Banned 🚫 to use this bot for **{ban_duration}** day(s) for the reason __{ban_reason}__ \n\n**Message from the admin 🤠**")
         return
-      
-    await bot.send_message(
-        chat_id=owner_id,
-        text=LOG_TEXT.format(message.chat.id,message.chat.id,message.chat.first_name,message.chat.last_name,message.chat.dc_id),
-        parse_mode="html"
-    )
     await message.reply_text(
         text="**Hi {}!**\n".format(message.chat.first_name)+C.START,
         reply_markup=InlineKeyboardMarkup([
@@ -376,7 +368,6 @@ async def pm_text(bot, message):
     await bot.send_message(
         chat_id=owner_id,
         text=IF_TEXT.format(reference_id, info.first_name, message.text),
-        parse_mode="html"
     )
 
 @bot.on_message((filters.group | filters.private) & filters.media_group)
@@ -444,7 +435,7 @@ async def pm_media(bot, message):
             from_chat_id=message.chat.id,
             message_id=message.message_id,
             caption=IF_CONTENT.format(reference_id, info.first_name),
-            parse_mode="html"
+
         )
 
 
@@ -510,15 +501,16 @@ async def replay_media(bot, message):
                 from_chat_id=message.chat.id,
                 message_id=message.message_id,
                 caption=message.caption,
-                parse_mode="html"
+    
             )
         else:
             await bot.copy_message(
                 chat_id=int(reference_id),
                 from_chat_id=message.chat.id,
                 message_id=message.message_id,
-                parse_mode="html"
+    
             )
 
 if __name__ == "__main__":
+    print("---------- ** Bot Started ** ----------")
     bot.run()
