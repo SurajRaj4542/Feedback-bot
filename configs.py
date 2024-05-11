@@ -24,7 +24,7 @@ class Config(object):
 
     SUPPORT_GROUP = str(os.environ.get("SUPPORT_GROUP", "https://t.me/HeimanSupport"))
 
-    DB_URL = str(os.environ.get("DB_URL", "test"))
+    DB_URL = str(os.environ.get("DB_URL", ""))
     
     DB_NAME = str(os.environ.get("DB_NAME", "feedback_bot"))
     
