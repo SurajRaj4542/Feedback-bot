@@ -77,7 +77,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             # 
             await db.set_notif(user_id, notif=True)
         await cb.message.edit(
-            f"`Here You Can Set Your Settings:`\n\nSuccessfully setted notifications to **{await db.get_notif(user_id)}**",
+            f"`Here You Can Set Your Settings:`\n\nSuccessfully set notifications to **{await db.get_notif(user_id)}**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -91,7 +91,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             ),
         )
         await cb.answer(
-            f"Successfully setted notifications to {await db.get_notif(user_id)}"
+            f"Successfully set notifications to {await db.get_notif(user_id)}"
         )
         
         
@@ -116,15 +116,13 @@ async def start(bot, message):
     # 
     ban_status = await db.get_ban_status(chat_id)
     is_banned = ban_status['is_banned']
-    ban_duration = ban_status['ban_duration']
-    ban_reason = ban_status['ban_reason']
     if is_banned is True:
-        await message.reply_text(f"You are Banned 🚫 to use this bot for **{ban_duration}** day(s) for the reason __{ban_reason}__ \n\n**Message from the admin 🤠**")
+        await message.reply_text(f"You are Banned")
         return
     await message.reply_text(
-        text="**Hi {}!**\n".format(message.chat.first_name)+C.START,
+        text="Hi!",
         reply_markup=InlineKeyboardMarkup([
-            [ InlineKeyboardButton(text="🛠SUPPORT🛠", url=f"{C.SUPPORT_GROUP}"), InlineKeyboardButton(text="📮UPDATES📮", url=f"{C.UPDATE_CHANNEL}")]
+            [InlineKeyboardButton(text="Channel", url=f"{C.UPDATE_CHANNEL}")]
         ])
     )
 
@@ -150,12 +148,9 @@ async def help(bot, message):
       
     await message.reply_text(
         text=C.HELP,
-        reply_markup=InlineKeyboardMarkup([
-            [ InlineKeyboardButton(text="🛠SUPPORT🛠", url=f"{C.SUPPORT_GROUP}"), InlineKeyboardButton(text="📮UPDATES📮", url=f"{C.UPDATE_CHANNEL}")]
-        ])
     )
 
-
+''''
 @bot.on_message(filters.command('donate') & (filters.group | filters.private))
 async def donate(bot, message):
     chat_id = message.from_user.id
@@ -211,7 +206,7 @@ async def opensettings(bot, cmd):
     except Exception as e:
         await cmd.reply_text(e)
 
-
+'''
 @bot.on_message(filters.private & filters.command("broadcast"))
 async def broadcast_handler_open(_, m):
     if m.from_user.id not in AUTH_USERS:
@@ -229,7 +224,7 @@ async def sts(c, m):
         await m.delete()
         return
     await m.reply_text(
-        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}`\n\n**Total Users with Notification Enabled 🔔 :** `{await db.total_notif_users_count()}`",
+        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}`",
         quote=True,
     )
 
@@ -258,7 +253,7 @@ async def ban(c, m):
         try:
             await c.send_message(
                 user_id,
-                f"You are Banned 🚫 to use this bot for **{ban_duration}** day(s) for the reason __{ban_reason}__ \n\n**Message from the admin 🤠**",
+                f"You are Banned 🚫 to use this bot for **{ban_duration}** day(s) for the reason __{ban_reason}__ \n\n",
             )
             ban_log_text += "\n\nUser notified successfully!"
         except BaseException:
