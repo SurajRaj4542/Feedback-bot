@@ -8,7 +8,7 @@ class Config(object):
 
     BOT_TOKEN = str(os.environ.get("BOT_TOKEN", ""))
     
-    OWNER_ID = int(os.environ.get("OWNER_ID", 1428968542))
+    OWNER_ID = int(os.environ.get("OWNER_ID", 5855311781))
 
     AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS", "").split())
 
