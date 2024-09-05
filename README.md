@@ -16,7 +16,7 @@
 #### You can also tap the Deploy To Railway button below to deploy straight to Railway!
   
 
-<p align="center"><a href="https://railway.app/new/template?template=https://github.com/AkkilMG/Feedback-bot"> <img src="https://railway.app/button.svg" width="250" height="50" alt="Deploy To Railway"/></a></p>
+<p align="center"><a href="https://railway.app/new/template?template=https://github.com/SurajRaj4542/Feedback-bot"> <img src="https://railway.app/button.svg" width="250" height="50" alt="Deploy To Railway"/></a></p>
 <!--&envs=API_ID%2CAPI_HASH%2CAPI_KEY%2CBOT_TOKEN-->
   
 ### Local Deploy 
